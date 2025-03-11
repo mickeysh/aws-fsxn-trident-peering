@@ -1,14 +1,14 @@
 {
-    "secretId": "fsxn-password-secret-Nk45k4W5",
+    "secretId": "<fsxn-aws-secret-manager-id>",
     "source": {
-        "fsID": "fs-0362cf28b24508b91",
-        "svmName": "ekssvm"
+        "fsID": "<source-fsxn-fsid>",
+        "svmName": "<source-svm-name>"
     }, 
     "destenation":{
-        "fsID": "fs-084a19d439a81b8a9",
-        "svmName": "ekssvmdr"
+        "fsID": "<destenation-fsxn-fsid>",
+        "svmName": "<destenation-svm-name>r"
     },
     "cleanup": true,
     "create": true,
-    "region": "us-east-1"
+    "region": "<aws-region>"
 }

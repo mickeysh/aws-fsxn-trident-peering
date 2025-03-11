@@ -13,6 +13,7 @@ The script will create both Cluster peering and SVM peering between the two FSxN
 
 The script can run on any server with network access to the FSxN cluster or on the EKS clusters as a job. 
 
+#### Input Parameters
 The script accesspt paramters as input in the `parms.json` file. If you run the script as a job the input will be saves as a ConfigMap. 
 
 This is a sample json file:
@@ -32,6 +33,7 @@ This is a sample json file:
     "region": "<aws-region>"
 }
 ```
+
 |parameter|description|example|
 |---|---|---|
 | secretId | SecretID to the AWS Secret Manager secret containing the fsxadmin password| fsxn-password-secret-Nk45k4W5
@@ -42,3 +44,38 @@ This is a sample json file:
 | cleanup | If true the it will cleanup all peering relationship in these clusters | |
 | create | If true it will create the peering relationships between the clusters and SVMs (false is usefull together with cleanup to clear all previous relationships) |
 | region | AWS region to run in | us-east-1 |
+
+#### Execution 
+To run this in kubernetes first create the [parms.json](parms.json) file as a ConfigMap using this the [parmcm.yaml](parmcm.yaml) sample manifest. 
+
+Once the ConfigMap is available run the peering using the [peerjob.yaml](peerjob.yaml) sample manifest. 
+
+In mounts the parms.json from the ConfigMap we just created and runs the script from public repo. You can use the sample [Dockerfile](Dockerfile) to build your own version of the image. 
+
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: peer-clusters
+  namespace: trident
+spec:
+  template:
+    spec:
+      serviceAccountName: trident-controller
+      containers:
+      - name: python
+        image: 139763910815.dkr.ecr.us-east-1.amazonaws.com/fsxn/ontap-peer:latest
+        volumeMounts:
+          - name: parms
+            mountPath: /usr/src/app/parms
+      restartPolicy: Never
+      volumes:
+        - name: parms
+          configMap:
+            name: peer-parms
+
+```
+To access to log outputs from the job you can use the following kubectl command:
+```shell
+kubectl logs job.batch/peer-clusters -n trident
+```
