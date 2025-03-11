@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: peer-parms
+  namespace: trident
+data:
+  parms.json: |
+    {
+        "secretId": "<fsxn-aws-secret-manager-id>",
+        "source": {
+            "fsID": "<source-fsxn-fsid>",
+            "svmName": "<source-svm-name>"
+        }, 
+        "destenation":{
+            "fsID": "<destenation-fsxn-fsid>",
+            "svmName": "<destenation-svm-name>r"
+        },
+        "cleanup": true,
+        "create": true,
+        "region": "<aws-region>"
+    }

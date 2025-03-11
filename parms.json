@@ -1,0 +1,14 @@
+{
+    "secretId": "fsxn-password-secret-Nk45k4W5",
+    "source": {
+        "fsID": "fs-0362cf28b24508b91",
+        "svmName": "ekssvm"
+    }, 
+    "destenation":{
+        "fsID": "fs-084a19d439a81b8a9",
+        "svmName": "ekssvmdr"
+    },
+    "cleanup": true,
+    "create": true,
+    "region": "us-east-1"
+}
