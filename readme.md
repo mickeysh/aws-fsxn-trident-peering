@@ -19,14 +19,15 @@ The script accesspt paramters as input in the `parms.json` file. If you run the 
 This is a sample json file:
 ```json
 {
-    "secretId": "<fsxn-aws-secret-manager-id>",
     "source": {
         "fsID": "<source-fsxn-fsid>",
-        "svmName": "<source-svm-name>"
+        "svmName": "<source-svm-name>",
+        "secretId": "<fsxn-aws-secret-manager-id>"
     }, 
     "destenation":{
         "fsID": "<destenation-fsxn-fsid>",
-        "svmName": "<destenation-svm-name>r"
+        "svmName": "<destenation-svm-name>",
+        "secretId": "<fsxn-aws-secret-manager-id>"
     },
     "cleanup": true,
     "create": true,
@@ -36,11 +37,12 @@ This is a sample json file:
 
 |parameter|description|example|
 |---|---|---|
-| secretId | SecretID to the AWS Secret Manager secret containing the fsxadmin password| fsxn-password-secret-Nk45k4W5
 | source.fsID | The source FSxN cluster file-system id | fs-0362cf28b24508b91 |
 | source.svmName | The source SVM name | ekssvm |
+| source.secretId | SecretID to the AWS Secret Manager secret containing the source cluster fsxadmin password| fsxn-password-secret-Nk45k4W5
 | destenation.fsID | The destenation FSxN cluster file-system id | fs-084a19d439a81b8a9 |
 | destenation.svmName | The destenation SVM name | ekssvmdr |
+| destenation.secretId | SecretID to the AWS Secret Manager secret containing the destenation cluster fsxadmin password| fsxn-password-secret-Nk45k4W5
 | cleanup | If true the it will cleanup all peering relationship in these clusters | |
 | create | If true it will create the peering relationships between the clusters and SVMs (false is usefull together with cleanup to clear all previous relationships) |
 | region | AWS region to run in | us-east-1 |

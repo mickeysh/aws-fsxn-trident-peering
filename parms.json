@@ -1,12 +1,13 @@
 {
-    "secretId": "<fsxn-aws-secret-manager-id>",
     "source": {
         "fsID": "<source-fsxn-fsid>",
-        "svmName": "<source-svm-name>"
+        "svmName": "<source-svm-name>",
+        "secretId": "<fsxn-aws-secret-manager-id>"
     }, 
     "destenation":{
         "fsID": "<destenation-fsxn-fsid>",
-        "svmName": "<destenation-svm-name>r"
+        "svmName": "<destenation-svm-name>",
+        "secretId": "<fsxn-aws-secret-manager-id>"
     },
     "cleanup": true,
     "create": true,
