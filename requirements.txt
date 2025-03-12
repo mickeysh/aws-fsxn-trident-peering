@@ -1,2 +1,3 @@
 boto3==1.37.9
 netapp-ontap==9.16.1.0
+jsonschema==4.23.0

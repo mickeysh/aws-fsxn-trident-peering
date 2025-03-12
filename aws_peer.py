@@ -11,9 +11,8 @@ def get_secret_value(secretId,region):
         logging.info(f"Feching secret values from secretID: {secretId}")
         response = client.get_secret_value(
                 SecretId=secretId)
-        ontap_user = json.loads(response['SecretString'])['username']
         ontap_password = json.loads(response['SecretString'])['password']
-        return ontap_user,ontap_password
+        return ontap_password
     except botocore.exceptions.ClientError as e:
         logging.error(e.response['Error']['Message'])
         sys.exit(1)
